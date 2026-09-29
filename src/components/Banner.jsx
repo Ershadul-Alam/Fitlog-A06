@@ -3,7 +3,7 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div className='flex justify-end bg-mist-900 p-10 rounded-2xl mt-4'>
+        <div className='flex justify-around bg-mist-900 p-10 rounded-2xl mt-4'>
             <div>
                 <p className='text-[#C2F800] font-bold text-xs mb-6'>WORKOUT LIBRARY</p>
                 <p className='font-bold text-5xl mb-6'>TRAIN WITH INTENT. LOG EVERY SET.</p>

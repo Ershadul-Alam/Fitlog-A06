@@ -1,10 +1,13 @@
+"use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import NavButtons from './NavButtons';
+import { MyplanContext } from '@/app/context/MyplanContext';
 
 const Navbar = () => {
 
+        const {todaysPlan, saved} = useContext(MyplanContext);
 
     return (
         <nav>
@@ -25,10 +28,10 @@ const Navbar = () => {
 
                 <div>
                     <Link href="/my-plan" className="hover:text-gray-300 text-white">
-                        Plan
+                        {`Plan(${todaysPlan.length})`}
                     </Link>
                     <Link href="/my-plan" className="hover:text-gray-300 text-white">
-                        Saved
+                        {`Saved(${saved.length})`}
                     </Link>
                 </div>
             </div>

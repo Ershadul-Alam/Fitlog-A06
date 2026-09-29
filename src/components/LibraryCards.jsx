@@ -5,8 +5,6 @@ import Link from 'next/link';
 
 const LibraryCards = ({cardData}) => {
 
-    console.log(cardData, `from libraryCard`);
-
     const exerciseData = {
         id: 1,
         name: "Barbell Bench Press",
@@ -46,9 +44,9 @@ const LibraryCards = ({cardData}) => {
                 {/* Card Content Container */}
                 <div className="p-6">
 
-                    { }
+                    
                     {/* Muscle Group Tags */}
-                    {/* <div className="flex flex-wrap gap-3 mb-4">
+                    <div className="flex flex-wrap gap-3 mb-4">
                         {cardData.muscleGroups.map((group, index) => (
                             <span
                                 key={index}
@@ -57,7 +55,7 @@ const LibraryCards = ({cardData}) => {
                                 {group}
                             </span>
                         ))}
-                    </div> */}
+                    </div>
 
                     {/* Title & Subtitle */}
                     <h2 className="text-white text-3xl font-black uppercase tracking-wide mt-2">
