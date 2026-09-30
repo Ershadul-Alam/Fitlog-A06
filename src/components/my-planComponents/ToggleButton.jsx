@@ -1,11 +1,12 @@
 "use client";
 
 import { MyplanContext } from "@/app/context/MyplanContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
+
 
 export default function PlanToggle() {
 
-        const { active, setActive } = useContext(MyplanContext);
+        const { active, setActive, todaysPlan, saved } = useContext(MyplanContext);
 
     return (
         <div className="flex w-fit mt-10 rounded-xl border border-zinc-800 bg-[#14171d] p-1">
@@ -30,6 +31,7 @@ export default function PlanToggle() {
             >
                 Saved
             </button>
+
         </div>
     );
 }

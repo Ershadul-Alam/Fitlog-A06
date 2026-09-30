@@ -6,15 +6,22 @@ import HorizontalExerciseCard from './HorizontalExerciseCard';
 
 const CardContainer = () => {
 
-        const { saved, todaysPlan, active, setActive } = useContext(MyplanContext);
+    const { saved, todaysPlan, active, setActive } = useContext(MyplanContext);
+
+    const plans = active === "today" ? todaysPlan : saved;
     return (
         <div>
-            {todaysPlan.length === 0 ? (
+            {plans.length === 0 ? (
                 <EmptyStateContainer />
-            ) : active === "today" ? (
-                todaysPlan.map(plan => <HorizontalExerciseCard key={plan.id} plan={plan}/>)
-                
-            ) : saved.map(plan => <HorizontalExerciseCard key={plan.id} plan={plan}/>)}
+            ) : (
+                plans.map(plan => (
+                    <HorizontalExerciseCard
+                        key={plan.id}
+                        plan={plan}
+                        today={active === "today"}
+                    />
+                ))
+            )}
         </div>
     );
 };

@@ -7,7 +7,9 @@ const TodaysPlanButton = ({exerciseData}) => {
 
     const {todaysPlan, setTodaysPlan} = useContext(MyplanContext)
     const handleTodaysPlanButton = () => {
+        {todaysPlan.includes(exerciseData) ? alert("Already Added") :
         setTodaysPlan([...todaysPlan, exerciseData]);
+        }
     };
 
     return (

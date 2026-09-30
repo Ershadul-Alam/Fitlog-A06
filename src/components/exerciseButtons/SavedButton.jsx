@@ -7,8 +7,9 @@ const SavedButton = ({exerciseData}) => {
 
     const { saved, setSaved } = useContext(MyplanContext)
     const handleSavedButton = () => {
+        {saved.includes(exerciseData) ? alert("Already Added") :
         setSaved([...saved, exerciseData]);
-        console.log(saved, "saved");
+        }
     };
 
     return (
