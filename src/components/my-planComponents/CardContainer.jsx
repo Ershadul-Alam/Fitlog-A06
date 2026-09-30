@@ -6,7 +6,7 @@ import HorizontalExerciseCard from './HorizontalExerciseCard';
 
 const CardContainer = () => {
 
-    const { saved, todaysPlan, active, setActive } = useContext(MyplanContext);
+    const { saved, todaysPlan, active,} = useContext(MyplanContext);
 
     const plans = active === "today" ? todaysPlan : saved;
     return (
