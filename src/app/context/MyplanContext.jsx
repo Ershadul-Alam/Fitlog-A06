@@ -6,9 +6,10 @@ export const MyplanContext = createContext({});
 const MyplanProvider = ({ children }) => {
     const [todaysPlan, setTodaysPlan] = useState([]);
     const [saved, setSaved] = useState([]);
+        const [active, setActive] = useState("today");
 
     return (
-        <MyplanContext.Provider value={{ todaysPlan, setTodaysPlan, saved, setSaved }}>
+        <MyplanContext.Provider value={{ todaysPlan, setTodaysPlan, saved, setSaved, active, setActive}}>
             {children}
         </MyplanContext.Provider>
     );

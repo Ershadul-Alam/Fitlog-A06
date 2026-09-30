@@ -1,16 +1,18 @@
 "use client";
 import React, { useContext } from 'react';
 import { MyplanContext } from '../context/MyplanContext';
+import ToggleButton from '@/components/my-planComponents/ToggleButton';
+import CardContainer from '@/components/my-planComponents/CardContainer';
 
 const MyPlan = () => {
 
-    const {todaysPlan} = useContext(MyplanContext);
-    console.log(todaysPlan, "todaysPlan");
+    const { todaysPlan } = useContext(MyplanContext);
 
     return (
         <div className='container mx-auto max-w-272'>
             <h3>MY PLAN</h3>
             <p>Cap of five lifts for today. Finish them, then load more.</p>
+
             <div className='grid grid-cols-3 p-4 items-center bg-[#13161D] font-bold text-[36px] py-6 rounded-2xl'>
                 <div>
                     <p className='font-light text-sm'>Exercises</p>
@@ -24,6 +26,14 @@ const MyPlan = () => {
                     <p className='font-light text-sm'>Calories</p>
                     <div>190</div>
                 </div>
+            </div>
+
+            {/* Toggle Button */}
+            <ToggleButton />
+
+            {/* Seleted Card Container */}
+            <div>
+            <CardContainer />
             </div>
         </div>
     );
