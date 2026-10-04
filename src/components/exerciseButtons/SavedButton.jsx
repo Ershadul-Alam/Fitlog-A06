@@ -2,14 +2,21 @@
 import { MyplanContext } from '@/app/context/MyplanContext';
 import { Bookmark } from 'lucide-react';
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 
 const SavedButton = ({exerciseData}) => {
 
     const { saved, setSaved } = useContext(MyplanContext)
     const handleSavedButton = () => {
-        {saved.includes(exerciseData) ? alert("Already Added") :
-        setSaved([...saved, exerciseData]);
+        const isAlreadySaved = saved.some((item) => item.id === exerciseData.id);
+
+        if (isAlreadySaved) {
+            toast.info('Already added to saved exercises');
+            return;
         }
+
+        setSaved((current) => [...current, exerciseData]);
+        toast.success('Exercise saved for later');
     };
 
     return (

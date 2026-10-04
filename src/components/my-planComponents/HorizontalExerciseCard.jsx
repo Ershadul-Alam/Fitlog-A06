@@ -1,86 +1,88 @@
-import React from 'react';
+'use client';
+import React, { useContext } from 'react';
 import Image from 'next/image';
-import { Clock, Flame, Star, Check, X } from 'lucide-react';
+import { Clock, Flame, Star, Check } from 'lucide-react';
 import Link from 'next/link';
 import HorizontalExerciseCardDismissIcon from './HorizontalExerciseCardDismissIcon';
+import { MyplanContext } from '@/app/context/MyplanContext';
+import { toast } from 'react-toastify';
 
 export default function HorizontalExerciseCard({plan, today}) {
-    
+    const { doneWorkouts, markAsDone } = useContext(MyplanContext);
+    const isWorkoutDone = today && doneWorkouts.includes(plan.id);
 
     return (
-        <div className="text-white p-4  flex items-center justify-center font-sans">
-
-            
-            
-            <div className="w-full max-w-5xl bg-[#16171b] border border-[#27282e] rounded-2xl p-3 pr-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 shadow-xl transition-all hover:border-[#383a42]">
-
-                
-                <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-5 w-full md:w-auto md:flex-1">
-
-                    
-                    {/* Thumbnail Image using Next.js Image */}
-                    <div className="shrink-0 rounded-xl overflow-hidden bg-gray-800 flex items-center justify-center">
+        <div className="text-white mt-4 mb-1 flex items-center justify-center font-sans">
+            <div className="flex w-full max-w-272 items-center justify-between gap-2 rounded-2xl border border-[#27282e] bg-[#16171b] p-2 shadow-xl transition-all hover:border-[#383a42] sm:gap-4 sm:p-3 sm:pr-4 md:gap-6">
+                <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-4 md:gap-5">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gray-800 sm:h-16 sm:w-30">
                         <Image
                             src={plan.image}
                             alt={plan.name}
                             width={120}
                             height={64}
-                            className="object-cover w-[120px] h-[64px]"
+                            className="size-full object-cover"
                         />
                     </div>
 
-                    
-                    {/* Text Information */}
-                    <div className="flex flex-col text-center sm:text-left w-full">
-                        <h3 className="uppercase font-black text-xl tracking-wider text-white leading-tight mb-0.5">
+                    <div className="flex min-w-0 flex-1 flex-col text-left">
+                        <h3 className="mb-0.5 wrap-break-word text-xs font-black uppercase leading-tight tracking-wide text-white sm:text-lg sm:tracking-wider md:text-xl">
                             {plan.name}
                         </h3>
-                        <p className="text-gray-400 text-sm font-medium mb-2.5">
+                        <p className="mb-1.5 wrap-break-word text-[10px] font-medium leading-tight text-gray-400 sm:mb-2.5 sm:text-sm">
                             {plan.equipment}
                         </p>
 
-                        {/* Stats Row */}
-                        <div className="flex items-center justify-center sm:justify-start gap-4 sm:gap-5">
-                            <div className="flex items-center gap-1.5">
-                                <Clock size={16} className="text-[#d9f90f]" />
-                                <span className="text-gray-300 text-sm font-medium">{plan.duration}</span>
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 sm:gap-x-4 md:gap-5">
+                            <div className="flex items-center gap-1">
+                                <Clock size={13} className="shrink-0 text-[#d9f90f] sm:size-4" />
+                                <span className="text-[10px] font-medium text-gray-300 sm:text-sm">{plan.duration}</span>
                             </div>
 
-                            <div className="flex items-center gap-1.5">
-                                <Flame size={16} className="text-[#d9f90f]" />
-                                <span className="text-gray-300 text-sm font-medium">{plan.caloriesBurned}</span>
+                            <div className="flex items-center gap-1">
+                                <Flame size={13} className="shrink-0 text-[#d9f90f] sm:size-4" />
+                                <span className="text-[10px] font-medium text-gray-300 sm:text-sm">{plan.caloriesBurned}</span>
                             </div>
 
-                            <div className="flex items-center gap-1.5">
-                                <Star size={16} className="text-[#d9f90f]" />
-                                <span className="text-gray-300 text-sm font-medium">{plan.rating}</span>
+                            <div className="flex items-center gap-1">
+                                <Star size={13} className="shrink-0 text-[#d9f90f] sm:size-4" />
+                                <span className="text-[10px] font-medium text-gray-300 sm:text-sm">{plan.rating}</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                
-                {/* Right Section: Actions */}
-                <div className="flex items-center justify-center gap-3 w-full md:w-auto mt-4 md:mt-0 shrink-0">
-
-                    {/* Secondary Button */}
+                <div className="flex w-24 shrink-0 flex-col items-stretch justify-center gap-1 sm:w-auto sm:flex-row sm:items-center sm:gap-2 md:gap-3">
                     <Link href={`/exercise/${plan.id}`}>
-                    <button className="px-5 py-2.5 rounded-full border border-gray-600 bg-transparent text-gray-200 text-sm font-semibold hover:bg-[#27282e] hover:border-gray-400 transition-all whitespace-nowrap">
-                        View Details
-                    </button>
+                        <button className="w-full whitespace-normal rounded-full border border-gray-600 bg-transparent px-1 py-1.5 text-center text-[10px] font-semibold leading-tight text-gray-200 transition-all hover:border-gray-400 hover:bg-[#27282e] sm:w-auto sm:whitespace-nowrap sm:px-3 sm:py-2.5 sm:text-sm md:px-5">
+                            View Details
+                        </button>
                     </Link>
-                    
-                    {/* Primary Action Button */}
-                    {today ? <button className="px-5 py-2.5 rounded-full bg-[#d9f90f] hover:bg-[#c2e00d] text-black text-sm font-bold flex items-center gap-2 transition-colors whitespace-nowrap shadow-[0_0_15px_rgba(217,249,15,0.15)]">
-                        <Check size={18} strokeWidth={2.5} />
-                        Mark as Done
-                    </button> : ""}
-                    
 
-                    {/* Close / Dismiss Icon */}
-                        {today ? <HorizontalExerciseCardDismissIcon today={today} plan={plan}/> : <HorizontalExerciseCardDismissIcon today={today} plan={plan}/>}
+                    {today ? (
+                        <button
+                            disabled={isWorkoutDone}
+                            onClick={() => {
+                                markAsDone(plan.id);
+                                toast.success('Workout marked as done');
+                            }}
+                            className={`flex w-full flex-row items-center justify-center gap-1 whitespace-nowrap rounded-full px-1 py-1.5 text-center text-[9px] font-bold leading-tight sm:w-auto sm:gap-2 sm:px-3 sm:py-2.5 sm:text-sm md:px-5 ${
+                                isWorkoutDone
+                                    ? 'bg-[#2d2f32] text-[#dfe5b0] cursor-not-allowed'
+                                    : 'bg-[#d9f90f] hover:bg-[#c2e00d] text-black'
+                            }`}
+                        >
+                            <Check size={12} strokeWidth={2.5} className="shrink-0 sm:size-4.5" />
+                            <span>{isWorkoutDone ? 'Workout Done' : 'Mark as Done'}</span>
+                        </button>
+                    ) : ''}
+
+                    {today ? (
+                        !isWorkoutDone && <HorizontalExerciseCardDismissIcon today={today} plan={plan} />
+                    ) : (
+                        <HorizontalExerciseCardDismissIcon today={today} plan={plan} />
+                    )}
                 </div>
-
             </div>
         </div>
     );

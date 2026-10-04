@@ -4,7 +4,7 @@ import React from 'react';
 
 const page = () => {
   return (
-    <div className='container mx-auto max-w-272'>
+    <div className='container mx-auto max-w-272 px-4 sm:px-6'>
       <Banner/>
       <Library/>
     </div>

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { CalendarPlus, Bookmark } from 'lucide-react';
 import TodaysPlanButton from '@/components/exerciseButtons/TodaysPlanButton';
 import SavedButton from '@/components/exerciseButtons/SavedButton';
+import { notFound } from 'next/navigation';
 
 // const data = {
 //     id: 1,
@@ -32,6 +33,9 @@ export default async function ExerciseDetails({params}) {
 
     const { id } = await params;
     const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+    if (res.status === 404) {
+        notFound();
+    }
     if (!res.ok) {
         throw new Error(`Could not load exercise ${id}: ${res.status}`);
     }
@@ -51,10 +55,10 @@ export default async function ExerciseDetails({params}) {
 
     return (
         
-        <div className="min-h-screen bg-[#0f0f11] text-white p-6 md:p-10 flex items-center justify-center font-sans">
+        <div className="flex min-h-screen items-center justify-center p-4 font-sans text-white sm:p-6">
             <div className="max-w-6xl w-full mx-auto">
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-10">
 
                     {/* Left Column: Image */}
                     <div className="h-full w-full rounded-2xl overflow-hidden shadow-2xl">
@@ -63,7 +67,7 @@ export default async function ExerciseDetails({params}) {
                             alt={data.name}
                             width={1200}
                             height={1200}
-                            className="w-full h-full object-cover min-h-100 lg:min-h-full"
+                            className="h-full min-h-64 w-full object-cover sm:min-h-100 lg:min-h-full"
                         />
                     </div>
 
@@ -71,7 +75,7 @@ export default async function ExerciseDetails({params}) {
                     <div className="flex flex-col py-2">
 
                         {/* Title & Description */}
-                        <h1 className="uppercase font-bold text-4xl mb-3 tracking-wide">
+                        <h1 className="mb-3 wrap-break-word text-3xl font-bold uppercase tracking-wide sm:text-4xl">
                             {data.name}
                         </h1>
                         <p className="text-gray-400 text-sm mb-4 leading-relaxed">
@@ -101,7 +105,7 @@ export default async function ExerciseDetails({params}) {
                                     <span className="uppercase text-gray-500 text-xs font-semibold tracking-wider">
                                         {stat.label}
                                     </span>
-                                    <span className="text-white text-sm font-medium">
+                                    <span className="max-w-[60%] wrap-break-word text-right text-sm font-medium text-white">
                                         {stat.value}
                                     </span>
                                 </div>

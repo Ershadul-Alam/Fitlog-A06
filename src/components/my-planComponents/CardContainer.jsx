@@ -6,15 +6,26 @@ import HorizontalExerciseCard from './HorizontalExerciseCard';
 
 const CardContainer = () => {
 
-    const { saved, todaysPlan, active,} = useContext(MyplanContext);
+    const { saved, todaysPlan, active, sortby } = useContext(MyplanContext);
 
     const plans = active === "today" ? todaysPlan : saved;
+    const sortField = {
+        duration: "duration",
+        sets: "sets",
+        calories: "caloriesBurned",
+    }[sortby];
+
+    const sortedPlans = [...plans].sort(
+        (first, second) => first[sortField] - second[sortField]
+    );
+
+
     return (
         <div>
             {plans.length === 0 ? (
                 <EmptyStateContainer />
             ) : (
-                plans.map(plan => (
+                sortedPlans.map(plan => (
                     <HorizontalExerciseCard
                         key={plan.id}
                         plan={plan}

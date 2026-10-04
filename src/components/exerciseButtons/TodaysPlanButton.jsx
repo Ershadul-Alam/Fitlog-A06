@@ -2,14 +2,26 @@
 import { MyplanContext } from '@/app/context/MyplanContext';
 import { CalendarPlus } from 'lucide-react';
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 
 const TodaysPlanButton = ({exerciseData}) => {
 
     const {todaysPlan, setTodaysPlan} = useContext(MyplanContext)
     const handleTodaysPlanButton = () => {
-        {todaysPlan.includes(exerciseData) ? alert("Already Added") :
-        setTodaysPlan([...todaysPlan, exerciseData]);
+        const isAlreadyAdded = todaysPlan.some((item) => item.id === exerciseData.id);
+
+        if (isAlreadyAdded) {
+            toast.info('Already added to daily plan');
+            return;
         }
+
+        if (todaysPlan.length >= 5) {
+            toast.warning('Today\'s plan is full. Finish or remove a lift first.');
+            return;
+        }
+
+        setTodaysPlan((current) => [...current, exerciseData]);
+        toast.success('Exercise added to daily plan');
     };
 
     return (
@@ -21,7 +33,7 @@ const TodaysPlanButton = ({exerciseData}) => {
                             flex items-center justify-center gap-2 flex-1 sm:flex-none"
                             >
                 <CalendarPlus size={18} />
-                <span>Add to today's plan</span>
+                <span>Add to today&apos;s plan</span>
             </button>
         </div>
     );

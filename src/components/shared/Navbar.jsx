@@ -10,37 +10,38 @@ const Navbar = () => {
     const { todaysPlan, saved } = useContext(MyplanContext);
 
     return (
-        <nav>
-            <div className='flex justify-around items-center mt-3'>
-                <Link href="/" className='flex items-center'>
+        <nav className='sticky top-0 z-50 bg-black'>
+            <div className='container mx-auto mt-2 flex max-w-352 items-center justify-between gap-0 px-0 sm:mt-4 sm:justify-around sm:gap-1 sm:px-4'>
+                <Link href="/" className='flex shrink-0 items-center'>
                     <Image
                         src="/logo.png"
                         width={20}
                         height={20}
                         alt="Logo"
+                        className="size-3.5 sm:size-5"
                     />
-                    <p className='text-white text-md font-medium ml-1'>FITLOG</p>
+                    <p className='ml-1 text-[11px] font-bold text-white sm:text-lg'>FITLOG</p>
                 </Link>
 
-                <div className="flex items-center space-x-1 rounded-xl">
+                <div className="flex shrink-0 items-center rounded-xl">
                     <NavButtons />
                 </div>
 
 
                 {/* Plan and saved */}
-                <div className="flex items-center justify-center font-sans">
-                    <div className="flex items-center gap-2">
+                <div className="flex shrink-0 items-center justify-center font-sans">
+                    <div className="flex items-center gap-1 sm:gap-3">
 
                         { }
                         <Link
                             href="/my-plan"
-                            className="flex items-center gap-1 cursor-pointer"
+                            className="flex items-center gap-0 cursor-pointer"
                         >
-                            <span className="text-[#e2e2e5] text-sm font-medium tracking-wide">
+                            <span className="text-[10px] font-medium tracking-wide text-[#e2e2e5] sm:text-sm">
                                 Plan
                             </span>
                             {/* Solid Neon Green Badge */}
-                            <div className="w-[23px] h-[23px] flex items-center justify-center bg-[#d9f90f] text-black rounded-full font-medium text-sm shadow-[0_0_15px_rgba(217,249,15,0.15)]">
+                            <div className="flex size-4 items-center justify-center rounded-full bg-[#d9f90f] text-[10px] font-medium text-black shadow-[0_0_15px_rgba(217,249,15,0.15)] sm:size-5.75 sm:text-sm">
                                 {todaysPlan.length}
                             </div>
                         </Link>
@@ -48,13 +49,13 @@ const Navbar = () => {
                         { }
                         <Link
                             href="/my-plan"
-                            className="flex items-center gap-1 cursor-pointer"
+                            className="flex items-center gap-0 cursor-pointer"
                         >
-                            <span className="text-[#9ba1a6] text-sm font-medium tracking-wide">
+                            <span className="text-[10px] font-medium tracking-wide text-[#9ba1a6] sm:text-sm">
                                 Saved
                             </span>
                             {/* Transparent Bordered Badge */}
-                            <div className="w-[26px] h-[26px] flex items-center justify-center bg-transparent border-2 border-[#2a2d35] text-[#d1d5db] rounded-full font-medium text-sm">
+                            <div className="flex size-4 items-center justify-center rounded-full border-2 border-[#2a2d35] bg-transparent text-[10px] font-medium text-[#d1d5db] sm:size-6.5 sm:text-sm">
                                 {saved.length}
                             </div>
                         </Link>
@@ -65,7 +66,7 @@ const Navbar = () => {
 
 
             </div>
-            <hr className="my-3 border-t border-gray-800" />
+            <hr className="mt-3 border-t border-gray-800" />
         </nav>
 
     );

@@ -16,20 +16,20 @@ const SummaryCard = () => {
         },0);
 
     return (
-        <div className='grid grid-cols-3'>
+        <div className='grid grid-cols-3 gap-2'>
                 <div>
-                    <p className='font-light text-sm'>Exercises</p>
-                    <div>{summaryData.length}</div>
+                    <p className='text-xs font-light sm:text-sm'>Exercises</p>
+                    <div className='text-2xl text-[#CCFF00] sm:text-4xl'>{summaryData.length}</div>
                 </div>
                 <div>
-                    <p className='font-light text-sm'>Minutes</p>
-                    <div>
+                    <p className='text-xs font-light sm:text-sm'>Minutes</p>
+                    <div className='text-2xl sm:text-4xl'>
                         {totalDuration}
                     </div>
                 </div>
                 <div>
-                    <p className='font-light text-sm'>Calories</p>
-                    <div>{totalCalories}</div>
+                    <p className='text-xs font-light sm:text-sm'>Calories</p>
+                    <div className='text-2xl sm:text-4xl'>{totalCalories}</div>
                 </div>
                 </div>
     );
